@@ -71,7 +71,7 @@ export const Cart = () => {
             </Grid>
             {noData &&
                 <Grid container flex={1} alignItems="center">
-                    <Typography variant="h6" fontWeight={600} align="center" style={{padding: '0 8px'}}>В вашей корзине
+                    <Typography variant="h6" fontWeight={600} align="center" style={{padding: '0 8px', width: '100%'}}>В вашей корзине
                         пока пусто</Typography>
                 </Grid>
             }
