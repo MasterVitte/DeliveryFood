@@ -9,8 +9,11 @@ export const ROUTES = {
     orders: '/orders',
     profile: '/profile',
     addresses: '/addresses',
+    restaurant: '/restaurant/:name',
     main: '/'
 } as const
+
+export const getRestaurantLinkByName = (name: string) => `${ROUTES.restaurant.replaceAll(':name', name)}`
 
 export const Routes = () => {
     return (

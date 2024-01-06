@@ -27,6 +27,7 @@ const DropdownMenuList = styled('ul')(({theme}) => ({
     marginTop: theme.spacing(2),
     marginRight: theme.spacing(2),
     borderRadius: 8,
+    boxShadow: '0 8px 20px rgba(117, 115, 111, 0.2)',
     padding: theme.spacing(2),
     listStyleType: 'none',
     minWidth: 300
