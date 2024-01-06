@@ -32,7 +32,7 @@ export const Footer = () => {
             </FooterDividerWrapper>
             <Grid container justifyContent="space-between" wrap="nowrap">
                 <Grid item flex={1}>
-                    <Typography>2024 - {new Date().getFullYear()} "ООО Деливери Фуд"</Typography>
+                    <Typography>2023 - {new Date().getFullYear()} "ООО Деливери Фуд"</Typography>
                 </Grid>
                 <Grid item container flex={1} alignItems="center" justifyContent="flex-end">
                     <Typography>MasterVitte</Typography>

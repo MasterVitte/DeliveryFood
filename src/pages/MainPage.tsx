@@ -1,16 +1,12 @@
 import React from 'react'
 import {RestaurantList} from "../widgets/RestaurantList/ui/RestaurantList";
-import {Box, styled} from "@mui/material";
-
-const MainBoxWrapper = styled(Box)(({theme}) => ({
-    padding: theme.spacing(0, 5)
-}))
+import {Box} from "@mui/material";
 
 
 export const MainPage = () => {
     return (
-        <MainBoxWrapper>
+        <Box>
             <RestaurantList />
-        </MainBoxWrapper>
+        </Box>
     )
 }
