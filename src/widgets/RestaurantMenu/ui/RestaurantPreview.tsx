@@ -33,10 +33,10 @@ export const RestaurantPreview = () => {
         <PreviewGrid container position="relative">
             <PreviewImg src={RestaurantImg} />
             <PreviewInfoBox>
-                <Typography variant="h3" fontWeight={600}>Шоколадница</Typography>
+                <Typography variant="h3" fontWeight={600}>Secret Kitchen</Typography>
                 <Grid container alignItems="center">
                     <Star />
-                    <PreviewRatingCounter variant="h6">3.8 (100)</PreviewRatingCounter>
+                    <PreviewRatingCounter variant="h6">4.7 (200+)</PreviewRatingCounter>
                 </Grid>
             </PreviewInfoBox>
         </PreviewGrid>

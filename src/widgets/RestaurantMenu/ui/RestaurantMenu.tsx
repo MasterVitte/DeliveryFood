@@ -5,7 +5,7 @@ import {RestaurantMenuList} from "./RestaurantMenuList";
 
 export const RestaurantMenu = () => {
     return (
-        <Grid lg={9} container justifyContent="center">
+        <Grid lg={8} md={8} sm={8} xs={8} container justifyContent="center">
             <Grid item container direction="column" alignItems="center">
                 <RestaurantPreview/>
                 <RestaurantMenuList/>

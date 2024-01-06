@@ -37,6 +37,7 @@ const RestaurantItemButton = styled(Button)(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
     borderRadius: 12,
     marginTop: theme.spacing(1),
+    textTransform: 'none',
 
     "&:hover": {
         backgroundColor: theme.palette.background.paper,
@@ -51,9 +52,9 @@ export const RestaurantMenuItem = () => {
                     <RestaurantImg src={ItemImg}/>
                 </RestaurantImgWrapper>
                 <RestaurantInfoWrapper>
-                    <Typography variant="h6" fontWeight={600}>500р</Typography>
-                    <Typography>Хинкали традиционные</Typography>
-                    <RestaurantInfoWtTitle>400г</RestaurantInfoWtTitle>
+                    <Typography variant="h6" fontWeight={600}>1830₽</Typography>
+                    <Typography>Dream Team</Typography>
+                    <RestaurantInfoWtTitle>715г</RestaurantInfoWtTitle>
                 </RestaurantInfoWrapper>
                 <Box>
                     <RestaurantItemButton fullWidth startIcon={<Add />}>Добавить</RestaurantItemButton>
