@@ -5,6 +5,8 @@ import {green} from "@mui/material/colors";
 import {Menu} from "@mui/base/Menu";
 import {MenuItem} from "@mui/base/MenuItem";
 import {Dropdown} from "@mui/base/Dropdown";
+import {ROUTES} from "../../../Routes";
+import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
 
 const MenuButtonDropdown = styled(MenuButton)(() => ({
     border: 'none',
@@ -57,9 +59,21 @@ export const AppProfile = () => {
                     <DropdownMenuAvatarName variant="h6">Artem Vitte</DropdownMenuAvatarName>
                     <Avatar sx={{bgcolor: green[500]}}>AV</Avatar>
                 </Grid>
-                <DropdownMenuItem>Заказы</DropdownMenuItem>
-                <DropdownMenuItem>Профиль</DropdownMenuItem>
-                <DropdownMenuItem>Мои адреса</DropdownMenuItem>
+                <RouterLink to={ROUTES.orders}>
+                    <DropdownMenuItem>
+                        Заказы
+                    </DropdownMenuItem>
+                </RouterLink>
+                <RouterLink to={ROUTES.profile}>
+                    <DropdownMenuItem>
+                        Профиль
+                    </DropdownMenuItem>
+                </RouterLink>
+                <RouterLink to={ROUTES.addresses}>
+                    <DropdownMenuItem>
+                        Мои адреса
+                    </DropdownMenuItem>
+                </RouterLink>
             </DropdownMenu>
         </Dropdown>
     )

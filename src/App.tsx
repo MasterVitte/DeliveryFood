@@ -1,23 +1,28 @@
 import React from 'react';
-import './App.css';
 import {Box, createTheme, CssBaseline, styled, ThemeProvider} from "@mui/material";
-import {Dashboard} from "./widgets/Dashboard/ui/Dashboard";
+import {BrowserRouter as Router} from "react-router-dom";
+import {AppBar} from "./widgets/AppBar/ui/AppBar";
+import {Routes} from "./Routes";
 
 const defaultTheme = createTheme();
 
 const AppBox = styled(Box)(({theme}) => ({
     backgroundColor: theme.palette.action.hover,
+    height: '100vh'
 }))
 
 function App() {
     return (
         <div className="App">
-            <ThemeProvider theme={defaultTheme}>
-                <AppBox sx={{display: 'flex'}}>
-                    <CssBaseline/>
-                    <Dashboard/>
-                </AppBox>
-            </ThemeProvider>
+            <Router>
+                <Routes/>
+                <ThemeProvider theme={defaultTheme}>
+                    <AppBox sx={{display: 'flex'}}>
+                        <CssBaseline/>
+                        <AppBar/>
+                    </AppBox>
+                </ThemeProvider>
+            </Router>
         </div>
     );
 }
