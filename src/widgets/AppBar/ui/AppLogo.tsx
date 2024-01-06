@@ -1,6 +1,8 @@
 import React from 'react'
 import logo from "../lib/assets/logo.svg";
-import {styled, Typography} from "@mui/material";
+import {Grid, styled, Typography} from "@mui/material";
+import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
+import {ROUTES} from "../../../Routes";
 
 const AppLogoImage = styled('img')(({theme}) => ({
     marginRight: theme.spacing(1)
@@ -16,11 +18,13 @@ const AppTitle = styled(Typography)(({theme}) => ({
 
 export const AppLogo = () => {
     return (
-        <>
-            <AppLogoImage src={logo} width={40} />
-            <AppTitle variant="h5">
-                Delivery Food
-            </AppTitle>
-        </>
+        <RouterLink to={ROUTES.main}>
+            <Grid container alignItems="center">
+                <AppLogoImage src={logo} width={40}/>
+                <AppTitle variant="h5">
+                    Delivery Food
+                </AppTitle>
+            </Grid>
+        </RouterLink>
     )
 }
