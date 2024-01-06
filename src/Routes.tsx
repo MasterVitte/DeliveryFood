@@ -4,6 +4,7 @@ import {OrdersPage} from "./pages/OrdersPage";
 import {ProfilePage} from "./pages/ProfilePage";
 import {AddressesPage} from "./pages/AddressesPage";
 import {MainPage} from "./pages/MainPage";
+import {RestaurantPage} from "./pages/RestaurantPage";
 
 export const ROUTES = {
     orders: '/orders',
@@ -27,6 +28,9 @@ export const Routes = () => {
             </Route>
             <Route path={ROUTES.addresses}>
                 <AddressesPage />
+            </Route>
+            <Route path={ROUTES.restaurant}>
+                <RestaurantPage />
             </Route>
             <Route path={ROUTES.main} exact>
                 <MainPage />

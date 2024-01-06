@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, createTheme, CssBaseline, styled, ThemeProvider} from "@mui/material";
+import {Box, createTheme, CssBaseline, Grid, styled, ThemeProvider} from "@mui/material";
 import {BrowserRouter as Router} from "react-router-dom";
 import {AppBar} from "./widgets/AppBar/ui/AppBar";
 import {Routes} from "./Routes";
@@ -7,15 +7,16 @@ import {Footer} from "./widgets/Footer/ui/Footer";
 
 const defaultTheme = createTheme();
 
-const AppBox = styled(Box)(({theme}) => ({
+const AppBox = styled(Grid)(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
-    height: '100vh'
 }))
 
 const LayoutRoute = styled(Box)(({theme}) => ({
-    margin: theme.spacing(10, 0),
+    margin: '160px auto 80px',
+    padding: theme.spacing(0, 8),
+    maxWidth: 1450,
     width: '100%',
-    height: '100vh'
+    minHeight: '100vh'
 }))
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <div className="App">
             <Router>
                 <ThemeProvider theme={defaultTheme}>
-                    <AppBox sx={{display: 'flex', flexDirection: 'column'}}>
+                    <AppBox container flexDirection="column">
                         <CssBaseline/>
                         <AppBar/>
                         <LayoutRoute>
