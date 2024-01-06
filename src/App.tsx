@@ -12,10 +12,9 @@ const AppBox = styled(Grid)(({theme}) => ({
 }))
 
 const LayoutRoute = styled(Box)(({theme}) => ({
-    margin: '160px auto 80px',
+    margin: '120px auto 80px',
     padding: theme.spacing(0, 8),
-    maxWidth: 1450,
-    width: '100%',
+    width: 1600,
     minHeight: '100vh'
 }))
 

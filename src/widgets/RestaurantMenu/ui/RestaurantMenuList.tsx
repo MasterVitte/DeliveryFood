@@ -10,13 +10,9 @@ export const RestaurantMenuList = () => {
     return (
         <>
             <Grid container style={{marginTop: '40px'}}>
-                <MenuListTitle variant="h4" fontWeight={700}>Горячие блюда</MenuListTitle>
+                <MenuListTitle variant="h5" fontWeight={700}>Сеты</MenuListTitle>
             </Grid>
             <Grid container spacing={3}>
-                <RestaurantMenuItem/>
-                <RestaurantMenuItem/>
-                <RestaurantMenuItem/>
-                <RestaurantMenuItem/>
                 <RestaurantMenuItem/>
             </Grid>
         </>

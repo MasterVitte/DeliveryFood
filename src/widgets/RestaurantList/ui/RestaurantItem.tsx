@@ -49,11 +49,11 @@ export const RestaurantItem = ({id}: Props) => {
                     <ListItemImg src={Img}/>
                 </ListItemBoxImg>
                 <Grid item>
-                    <ListItemTitle fontWeight={600}>Шоколадница</ListItemTitle>
+                    <ListItemTitle fontWeight={600}>Secret Kitchen</ListItemTitle>
                 </Grid>
                 <Grid item container alignItems="center">
                     <ListItemStar/>
-                    <ListItemRatingCount fontWeight={600} variant="body2">3.8 (100)</ListItemRatingCount>
+                    <ListItemRatingCount fontWeight={600} variant="body2">4.7 (200+)</ListItemRatingCount>
                 </Grid>
             </RouterLink>
         </ListItemGrid>
