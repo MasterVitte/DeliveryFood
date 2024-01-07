@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import {ContextType, StoreProviderType} from "../StoreProvider";
 import {Cart, CartItem} from "../../entities/Cart/model";
+import {MenuItem} from "../../entities/Resturant/model";
 
 interface Props {
     cart: Cart
@@ -11,7 +12,8 @@ export const useCartStore = ({ cart, setState }: Props) => {
     const addToCard: ContextType['addToCard'] = useCallback(({ restaurantId, menuItemId }) => {
         setState(prevState => {
             const restaurant = prevState.restaurants.find(({ id }) => id === restaurantId)
-            const menuItem = restaurant!.menu.find(({ id }) => id === menuItemId)!
+            const restaurantMenuItems = restaurant!.menu.reduce<MenuItem[]>((acc, group) => ([...acc, ...group.items]) ,[])
+            const menuItem = restaurantMenuItems.find(({ id }) => id === menuItemId)!
 
             const preparedMenuItem: CartItem = {...menuItem, count: 1}
 

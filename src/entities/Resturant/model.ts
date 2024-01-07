@@ -5,7 +5,13 @@ export interface Restaurant {
     imageDetail: string
     rating: number
     feedBackCount: number
-    menu: MenuItem[]
+    menu: MenuGroup[]
+}
+
+export interface MenuGroup {
+    id: string
+    name: string
+    items: MenuItem[]
 }
 
 export interface MenuItem {
