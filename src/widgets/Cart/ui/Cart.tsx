@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Box, Button, Grid, styled, Typography} from "@mui/material";
 import {CartItem} from "./CartItem";
 import {green} from "@mui/material/colors";
+import {useStore} from "../../../store/Store";
 
 const CartWrapper = styled(Grid)(({theme}) => ({
     backgroundColor: '#eee',
@@ -53,19 +54,19 @@ const CartButton = styled(Button)(({theme}) => ({
 }))
 
 export const Cart = () => {
-    const [items] = useState([])
+    const { cart, clearCart } = useStore()
 
-    const noData = !items.length
+    const noData = !cart.items.length
 
     return (
         <CartWrapper container flexDirection="column">
             <Grid item container justifyContent="space-between">
-                <Box>
+                <Box component="div">
                     <Typography variant="h5" fontWeight={600}>Корзина</Typography>
                 </Box>
                 {!noData &&
-                    <Box>
-                        <CartButtonClear>Очистить</CartButtonClear>
+                    <Box component="div">
+                        <CartButtonClear onClick={clearCart}>Очистить</CartButtonClear>
                     </Box>
                 }
             </Grid>
@@ -78,13 +79,13 @@ export const Cart = () => {
             {!noData && (
                 <>
                     <CartItemsWrapper item flex={1} container>
-                        <CartItem/>
+                        {cart.items.map(cartItem => <CartItem key={cartItem.id} id={cartItem.id} />)}
                     </CartItemsWrapper>
                     <CartButtonWrapper container>
                         <CartButton fullWidth>
                             <Grid container justifyContent="space-between">
                                 <Typography>Верно, к оплате</Typography>
-                                <Typography>1000₽</Typography>
+                                <Typography>{cart.total}₽</Typography>
                             </Grid>
                         </CartButton>
                     </CartButtonWrapper>

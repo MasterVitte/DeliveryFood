@@ -1,9 +1,9 @@
 import React from 'react'
 import {Grid, styled, Typography} from "@mui/material"
-import Img from '../../../shared/images/restaurant1_background.png'
 import {Star} from "@mui/icons-material";
 import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
 import {getRestaurantLinkByName} from "../../../Routes";
+import {useRestaurantFetch} from "../../../shared/RestaurantService/useRestaurantFetch";
 
 const ListItemGrid = styled(Grid)(({theme}) => ({
     margin: theme.spacing(2, 0)
@@ -42,18 +42,24 @@ interface Props {
 }
 
 export const RestaurantItem = ({id}: Props) => {
+    const restaurant = useRestaurantFetch(id)
+
+    if (!restaurant) {
+        return null
+    }
+
     return (
         <ListItemGrid key={id} item lg={3} md={3} sm={3} xs={3} container direction="column">
-            <RouterLink to={getRestaurantLinkByName('shoko')}>
+            <RouterLink to={getRestaurantLinkByName(id)}>
                 <ListItemBoxImg item>
-                    <ListItemImg src={Img}/>
+                    <ListItemImg src={restaurant.imagePreview}/>
                 </ListItemBoxImg>
                 <Grid item>
-                    <ListItemTitle fontWeight={600}>Secret Kitchen</ListItemTitle>
+                    <ListItemTitle fontWeight={600}>{restaurant.name}</ListItemTitle>
                 </Grid>
                 <Grid item container alignItems="center">
                     <ListItemStar/>
-                    <ListItemRatingCount fontWeight={600} variant="body2">4.7 (200+)</ListItemRatingCount>
+                    <ListItemRatingCount fontWeight={600} variant="body2">{restaurant.rating} ({restaurant.feedBackCount})</ListItemRatingCount>
                 </Grid>
             </RouterLink>
         </ListItemGrid>
