@@ -4,6 +4,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {AppBar} from "./widgets/AppBar/ui/AppBar";
 import {Routes} from "./Routes";
 import {Footer} from "./widgets/Footer/ui/Footer";
+import {StoreProvider} from "./store/Store";
 
 const defaultTheme = createTheme();
 
@@ -21,18 +22,20 @@ const LayoutRoute = styled(Box)(({theme}) => ({
 function App() {
     return (
         <div className="App">
-            <Router>
-                <ThemeProvider theme={defaultTheme}>
-                    <AppBox container flexDirection="column">
-                        <CssBaseline/>
-                        <AppBar/>
-                        <LayoutRoute>
-                            <Routes />
-                        </LayoutRoute>
-                        <Footer />
-                    </AppBox>
-                </ThemeProvider>
-            </Router>
+            <StoreProvider>
+                <Router>
+                    <ThemeProvider theme={defaultTheme}>
+                        <AppBox container flexDirection="column">
+                            <CssBaseline/>
+                            <AppBar/>
+                            <LayoutRoute>
+                                <Routes/>
+                            </LayoutRoute>
+                            <Footer/>
+                        </AppBox>
+                    </ThemeProvider>
+                </Router>
+            </StoreProvider>
         </div>
     );
 }

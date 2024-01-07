@@ -1,7 +1,8 @@
 import React from 'react'
 import {Box, Grid, styled, Typography} from "@mui/material";
-import RestaurantImg from '../../../shared/images/restaurant1_preview.png'
 import {Star} from "@mui/icons-material";
+import {useParams} from "react-router";
+import {useRestaurantFetch} from "../../../shared/RestaurantService/useRestaurantFetch";
 
 const PreviewGrid = styled(Grid)(() => ({
     borderRadius: 24,
@@ -29,14 +30,22 @@ const PreviewRatingCounter = styled(Typography)(({theme}) => ({
 }))
 
 export const RestaurantPreview = () => {
+    const { id } = useParams<any>()
+
+    const restaurant = useRestaurantFetch(id)
+
+    if (!restaurant) {
+        return null
+    }
+
     return (
         <PreviewGrid container position="relative">
-            <PreviewImg src={RestaurantImg} />
+            <PreviewImg src={restaurant.imageDetail} />
             <PreviewInfoBox>
-                <Typography variant="h3" fontWeight={600}>Secret Kitchen</Typography>
+                <Typography variant="h3" fontWeight={600}>{restaurant.name}</Typography>
                 <Grid container alignItems="center">
                     <Star />
-                    <PreviewRatingCounter variant="h6">4.7 (200+)</PreviewRatingCounter>
+                    <PreviewRatingCounter variant="h6">{restaurant.rating} ({restaurant.feedBackCount})</PreviewRatingCounter>
                 </Grid>
             </PreviewInfoBox>
         </PreviewGrid>

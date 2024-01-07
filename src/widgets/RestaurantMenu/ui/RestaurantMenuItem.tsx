@@ -1,6 +1,10 @@
-import {Box, Button, Grid, styled, Typography} from "@mui/material";
-import ItemImg from '../../../shared/images/restaurant1_item1.png'
-import {Add} from "@mui/icons-material";
+import {Box, Button, Grid, styled, Typography} from "@mui/material"
+import {Add} from "@mui/icons-material"
+import {useStore} from "../../../store/Store"
+import {MenuItem} from "../../../entities/Resturant/model"
+import React, {useEffect, useState} from "react";
+import {CartItem} from "../../../entities/Cart/model";
+import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls";
 
 const RestaurantItemWrapper = styled(Grid)(({theme}) => ({
     padding: theme.spacing(2),
@@ -36,7 +40,6 @@ const RestaurantItemButton = styled(Button)(({theme}) => ({
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.background.paper,
     borderRadius: 12,
-    marginTop: theme.spacing(1),
     textTransform: 'none',
 
     "&:hover": {
@@ -44,20 +47,42 @@ const RestaurantItemButton = styled(Button)(({theme}) => ({
     }
 }))
 
-export const RestaurantMenuItem = () => {
+type Props = MenuItem & { restaurantId: string }
+
+export const RestaurantMenuItem = ({restaurantId, id, name, image, price, weight}: Props) => {
+    const [itemInCart, setItemInCart] = useState<CartItem | undefined>(undefined)
+
+    const {addToCard, cart} = useStore()
+
+    useEffect(() => {
+        setItemInCart(cart.items.find(item => item.id === id))
+    }, [cart, id])
+
+    const addedInCart = !!itemInCart
+
     return (
         <Grid item container lg={3} md={3} sm={3} xs={3}>
             <RestaurantItemWrapper>
                 <RestaurantImgWrapper>
-                    <RestaurantImg src={ItemImg}/>
+                    <RestaurantImg src={image}/>
                 </RestaurantImgWrapper>
                 <RestaurantInfoWrapper>
-                    <Typography variant="h6" fontWeight={600}>1830₽</Typography>
-                    <Typography>Dream Team</Typography>
-                    <RestaurantInfoWtTitle>715г</RestaurantInfoWtTitle>
+                    <Typography variant="h6" fontWeight={600}>{price}₽</Typography>
+                    <Typography>{name}</Typography>
+                    <RestaurantInfoWtTitle>{weight}г</RestaurantInfoWtTitle>
                 </RestaurantInfoWrapper>
-                <Box>
-                    <RestaurantItemButton fullWidth startIcon={<Add />}>Добавить</RestaurantItemButton>
+                <Box component="div" style={{marginTop: '8px'}}>
+                    {addedInCart ? (
+                            <CartItemControls restaurantId={restaurantId} id={id} count={itemInCart?.count}/>
+                        ) :
+                        <RestaurantItemButton
+                            fullWidth
+                            startIcon={<Add/>}
+                            onClick={() => addToCard({restaurantId, menuItemId: id})}
+                        >
+                            Добавить
+                        </RestaurantItemButton>
+                    }
                 </Box>
             </RestaurantItemWrapper>
         </Grid>

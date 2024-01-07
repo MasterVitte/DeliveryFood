@@ -10,11 +10,11 @@ export const ROUTES = {
     orders: '/orders',
     profile: '/profile',
     addresses: '/addresses',
-    restaurant: '/restaurant/:name',
+    restaurant: '/restaurant/:id',
     main: '/'
 } as const
 
-export const getRestaurantLinkByName = (name: string) => `${ROUTES.restaurant.replaceAll(':name', name)}`
+export const getRestaurantLinkByName = (id: string) => `${ROUTES.restaurant.replaceAll(':id', id)}`
 
 export const Routes = () => {
     return (

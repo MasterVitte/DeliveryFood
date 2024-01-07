@@ -1,10 +1,7 @@
 import React from 'react'
-import {MenuButton} from "@mui/base/MenuButton";
 import {Avatar, Grid, styled, Typography} from "@mui/material";
+import {Dropdown, Menu, MenuButton, MenuItem} from '@mui/base'
 import {green} from "@mui/material/colors";
-import {Menu} from "@mui/base/Menu";
-import {MenuItem} from "@mui/base/MenuItem";
-import {Dropdown} from "@mui/base/Dropdown";
 import {ROUTES} from "../../../Routes";
 import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
 
