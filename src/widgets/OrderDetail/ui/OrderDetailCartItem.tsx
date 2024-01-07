@@ -12,7 +12,7 @@ const OrderItemInfo = styled(Box)(({theme}) => ({
 
 type Props = CartItem
 
-export const OrderDetailItem = ({ count, price, image, name }: Props) => {
+export const OrderDetailCartItem = ({ count, price, image, name }: Props) => {
     return (
         <OrderItemWrapper container item wrap="nowrap" alignItems="center" justifyContent="space-between">
             <Box component="div" display="flex">

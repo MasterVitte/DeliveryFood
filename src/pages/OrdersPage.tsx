@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {Grid, Typography} from "@mui/material";
 import {OrdersList} from "../widgets/OrdersList/ui/OrdersList";
-import {OrdersDetail} from "../widgets/OrderDetail/ui/OrdersDetail";
+import {OrderDetail} from "../widgets/OrderDetail/ui/OrderDetail";
 import {useStore} from "../store/StoreProvider";
 import {Button} from "../shared/Button/ui/Button";
 import CakeIcon from '@mui/icons-material/Cake';
@@ -42,7 +42,7 @@ export const OrdersPage = () => {
                 <OrdersList/>
             </Grid>
             <Grid item lg={6} md={6} sm={6} xs={6}>
-                <OrdersDetail/>
+                <OrderDetail/>
             </Grid>
         </Grid>
     )

@@ -1,8 +1,9 @@
 import React from 'react'
 import {Divider, Grid, styled, Typography} from "@mui/material";
-import {OrderDetailItem} from "./OrderDetailItem";
+import {OrderDetailCartItem} from "./OrderDetailCartItem";
 import {useOrderItemFetch} from "../lib/useOrderItemFetch";
 import {useStore} from "../../../store/StoreProvider";
+import {OrderStatus} from "./OrderStatus";
 
 const OrdersDetailWrapper = styled(Grid)(({theme}) => ({
     marginTop: theme.spacing(2)
@@ -16,6 +17,10 @@ const OrdersDetailContent = styled(Grid)(({theme}) => ({
 
 const OrdersSystemInfoWrapper = styled(Grid)(({theme}) => ({
     color: theme.palette.text.disabled
+}))
+
+const OrdersStatusInfoWrapper = styled(Grid)(({theme}) => ({
+    marginTop: theme.spacing(4)
 }))
 
 const OrdersAddressInfoWrapper = styled(Grid)(({theme}) => ({
@@ -46,7 +51,7 @@ const OrderTotalWrapper = styled(Grid)(({theme}) => ({
     marginTop: theme.spacing(4)
 }))
 
-export const OrdersDetail = () => {
+export const OrderDetail = () => {
     const {activeOrderOnView} = useStore()
 
     const order = useOrderItemFetch(activeOrderOnView)
@@ -63,6 +68,9 @@ export const OrdersDetail = () => {
                         <Typography variant="caption">№{order.id}</Typography>
                         <Typography variant="caption">Создан {order.date}</Typography>
                     </OrdersSystemInfoWrapper>
+                    <OrdersStatusInfoWrapper container alignItems="center" justifyContent="center">
+                        <OrderStatus status={order.status} />
+                    </OrdersStatusInfoWrapper>
                     <OrdersAddressInfoWrapper>
                         <OrdersAddressTitle>Адрес</OrdersAddressTitle>
                         <OrdersAddress>{order.address}</OrdersAddress>
@@ -71,7 +79,7 @@ export const OrdersDetail = () => {
                     <OrderListWrapper>
                         <OrderListTitle>Состав заказа</OrderListTitle>
                         <Grid container>
-                            {order.items.map(item => <OrderDetailItem key={item.id} {...item} />)}
+                            {order.items.map(item => <OrderDetailCartItem key={item.id} {...item} />)}
                         </Grid>
                     </OrderListWrapper>
                     <OrderDivider/>

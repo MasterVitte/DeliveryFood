@@ -40,7 +40,7 @@ export const OrdersItem = ({ id, name, total, status, date, items }: Props) => {
                     <Typography variant="body2">{ORDER_STATUS_DICTIONARY[status]}</Typography>
                 </Grid>
                 <ItemsWrapper container gap={1}>
-                    {items.map(item => <ItemImg src={item.image} />)}
+                    {items.map(item => <ItemImg key={item.image} src={item.image} />)}
                 </ItemsWrapper>
             </OrderWrapper>
         </Grid>
