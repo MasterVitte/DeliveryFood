@@ -4,6 +4,7 @@ import {Star} from "@mui/icons-material";
 import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
 import {getRestaurantLinkByName} from "../../../Routes";
 import {Restaurant} from "../../../entities/Resturant/model";
+import {useStore} from "../../../store/StoreProvider";
 
 const ListItemTitle = styled(Typography)(({theme}) => ({
     marginTop: theme.spacing(0.5)
@@ -36,9 +37,15 @@ const ListItemRatingCount = styled(Typography)(({theme}) => ({
 type Props = Restaurant
 
 export const RestaurantItem = ({ id, name, imagePreview, rating, feedBackCount }: Props) => {
+    const { cart, clearCart } = useStore()
+
     return (
         <Grid key={id} item lg={3} md={3} sm={3} xs={3} container direction="column">
-            <RouterLink to={getRestaurantLinkByName(id)}>
+            <RouterLink to={getRestaurantLinkByName(id)} onClick={() => {
+                if (cart.restaurantId !== id) {
+                    clearCart()
+                }
+            }}>
                 <ListItemBoxImg item>
                     <ListItemImg src={imagePreview}/>
                 </ListItemBoxImg>

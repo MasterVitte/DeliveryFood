@@ -19,12 +19,18 @@ export const RestaurantMenuList = () => {
 
     return (
         <>
-            <Grid container style={{marginTop: '40px'}}>
-                <MenuListTitle variant="h5" fontWeight={700}>Сеты</MenuListTitle>
-            </Grid>
-            <Grid container spacing={3}>
-                {restaurant.menu.map(menuItem => <RestaurantMenuItem key={menuItem.id} restaurantId={restaurant.id} {...menuItem} />)}
-            </Grid>
+            {restaurant.menu.map(group => {
+                return (
+                    <>
+                        <Grid container style={{marginTop: '40px'}}>
+                            <MenuListTitle variant="h5" fontWeight={700}>{group.name}</MenuListTitle>
+                        </Grid>
+                        <Grid container spacing={3}>
+                            {group.items.map(menuItem => <RestaurantMenuItem key={menuItem.id} restaurantId={restaurant.id} {...menuItem} />)}
+                        </Grid>
+                    </>
+                )
+            })}
         </>
     )
 }
