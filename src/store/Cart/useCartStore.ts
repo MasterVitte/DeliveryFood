@@ -116,7 +116,8 @@ export const useCartStore = ({ cart, setState }: Props) => {
                 }
             })
         }
-    }, [cart, setState])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cart.items, setState])
 
     return { addToCard, removeFromCart, clearCart }
 }

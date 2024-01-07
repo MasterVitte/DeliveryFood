@@ -2,9 +2,10 @@ import {Box, Button, Grid, styled, Typography} from "@mui/material"
 import {Add} from "@mui/icons-material"
 import {useStore} from "../../../store/StoreProvider"
 import {MenuItem} from "../../../entities/Resturant/model"
-import React from "react";
+import React, {useCallback} from "react";
 import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls";
 import {useCartItemFetch} from "../lib/useCartItemFetch";
+import {CartClearModal} from "../../CartClearModal/ui/CartClearModal";
 
 const RestaurantItemWrapper = styled(Grid)(({theme}) => ({
     padding: theme.spacing(2),
@@ -50,8 +51,12 @@ const RestaurantItemButton = styled(Button)(({theme}) => ({
 type Props = MenuItem & { restaurantId: string }
 
 export const RestaurantMenuItem = ({restaurantId, id, name, image, price, weight}: Props) => {
-    const {addToCard} = useStore()
+    const {addToCard, cart, openClearCartModal} = useStore()
     const { cartItem } = useCartItemFetch(id)
+    
+    const onSelect = useCallback(() => {
+        addToCard({restaurantId, menuItemId: id})
+    }, [addToCard, id, restaurantId])
 
     const addedInCart = !!cartItem
 
@@ -73,13 +78,20 @@ export const RestaurantMenuItem = ({restaurantId, id, name, image, price, weight
                         <RestaurantItemButton
                             fullWidth
                             startIcon={<Add/>}
-                            onClick={() => addToCard({restaurantId, menuItemId: id})}
+                            onClick={() => {
+                                if (cart.restaurantId && restaurantId !== cart.restaurantId) {
+                                    openClearCartModal()
+                                } else {
+                                    onSelect()
+                                }
+                            }}
                         >
                             Добавить
                         </RestaurantItemButton>
                     }
                 </Box>
             </RestaurantItemWrapper>
+            <CartClearModal restaurantId={restaurantId} onSuccess={onSelect} />
         </Grid>
     )
 }

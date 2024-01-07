@@ -7,15 +7,17 @@ export const useConfigureStore = () => {
     const persistCart = localStorage.getItem('cart')
     const persistOrders = localStorage.getItem('orders')
     const persistActiveOrderOnView = localStorage.getItem('activeOrderOnView')
+    const persistClearCartModalShow = localStorage.getItem('clearCartModalShow')
 
     const persistState = {
         restaurants: persistRestaurants ? JSON.parse(persistRestaurants) : mockStore.restaurants,
         cart: persistCart ? JSON.parse(persistCart) : mockStore.cart,
         orders: persistOrders ? JSON.parse(persistOrders) : mockStore.orders,
-        activeOrderOnView: persistActiveOrderOnView ? JSON.parse(persistActiveOrderOnView) : mockStore.activeOrderOnView
+        activeOrderOnView: persistActiveOrderOnView ? JSON.parse(persistActiveOrderOnView) : mockStore.activeOrderOnView,
+        clearCartModalShow: persistClearCartModalShow ? JSON.parse(persistClearCartModalShow) : mockStore.clearCartModalShow,
     }
 
-    const [{ restaurants, cart, orders, activeOrderOnView }, setState] = useState<StoreProviderType>(persistState)
+    const [{ restaurants, cart, orders, activeOrderOnView, clearCartModalShow }, setState] = useState<StoreProviderType>(persistState)
     
     const needFetch = !restaurants.length
     const needSyncLocalStorageWithStore = restaurants.length
@@ -34,5 +36,5 @@ export const useConfigureStore = () => {
         }
     }, [cart, needFetch, needSyncLocalStorageWithStore, orders, restaurants])
 
-    return { restaurants, cart, orders, activeOrderOnView, setState }
+    return { restaurants, cart, orders, activeOrderOnView, clearCartModalShow, setState }
 }

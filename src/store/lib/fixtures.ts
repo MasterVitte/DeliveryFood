@@ -61,5 +61,6 @@ export const mockStore: StoreProviderType = {
         total: 0
     },
     orders: [],
-    activeOrderOnView: null
+    activeOrderOnView: null,
+    clearCartModalShow: false
 }
