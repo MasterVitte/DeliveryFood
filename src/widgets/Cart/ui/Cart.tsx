@@ -1,8 +1,11 @@
 import React from 'react'
-import {Box, Button, Grid, styled, Typography} from "@mui/material";
+import {Box, Grid, Button as MaterialButton, styled, Typography} from "@mui/material";
 import {CartItem} from "./CartItem";
-import {green} from "@mui/material/colors";
-import {useStore} from "../../../store/Store";
+import {useStore} from "../../../store/StoreProvider";
+import {Order} from "../../../entities/Order/model";
+import { v4 } from 'uuid'
+import {useParams} from "react-router";
+import {Button} from "../../../shared/Button/ui/Button";
 
 const CartWrapper = styled(Grid)(({theme}) => ({
     backgroundColor: '#eee',
@@ -13,7 +16,7 @@ const CartWrapper = styled(Grid)(({theme}) => ({
     height: 'calc(100vh - 160px)',
 }))
 
-const CartButtonClear = styled(Button)(({theme}) => ({
+const CartButtonClear = styled(MaterialButton)(({theme}) => ({
     color: theme.palette.text.disabled,
     textTransform: 'none',
     borderRadius: 24
@@ -40,21 +43,25 @@ const CartButtonWrapper = styled(Grid)(({theme}) => ({
     padding: theme.spacing(2)
 }))
 
-const CartButton = styled(Button)(({theme}) => ({
-    backgroundColor: green[500],
-    padding: theme.spacing(0, 2),
-    color: theme.palette.background.paper,
-    height: 50,
-    borderRadius: 12,
-    textTransform: 'none',
-
-    '&:hover': {
-        backgroundColor: theme.palette.text.primary,
-    }
-}))
-
 export const Cart = () => {
-    const { cart, clearCart } = useStore()
+    const { cart, clearCart, getRestaurantById, confirmOrder } = useStore()
+
+    const { id } = useParams<any>()
+
+    const onSubmitOrder = () => {
+        const order: Order = {
+            id: v4().toString(),
+            name: getRestaurantById(id)?.name || '',
+            date: new Date().toLocaleString(),
+            status: 'checking',
+            total: cart.total,
+            items: cart.items,
+            address: 'Мой адрес'
+        }
+
+        confirmOrder(order)
+        clearCart()
+    }
 
     const noData = !cart.items.length
 
@@ -79,15 +86,15 @@ export const Cart = () => {
             {!noData && (
                 <>
                     <CartItemsWrapper item flex={1} container>
-                        {cart.items.map(cartItem => <CartItem key={cartItem.id} id={cartItem.id} />)}
+                        {cart.items.map(cartItem => <CartItem key={cartItem.id} restaurantId={cart.restaurantId} {...cartItem} />)}
                     </CartItemsWrapper>
                     <CartButtonWrapper container>
-                        <CartButton fullWidth>
+                        <Button fullWidth onClick={onSubmitOrder}>
                             <Grid container justifyContent="space-between">
-                                <Typography>Верно, к оплате</Typography>
+                                <Typography>Оформить заказ</Typography>
                                 <Typography>{cart.total}₽</Typography>
                             </Grid>
-                        </CartButton>
+                        </Button>
                     </CartButtonWrapper>
                 </>
             )}

@@ -1,17 +1,18 @@
 import React from 'react'
-import {Box, Grid, Typography} from "@mui/material";
-import {RestaurantItem} from "./RestaurantItem";
-import {useStore} from "../../../store/Store";
+import {Grid, styled} from "@mui/material"
+import {RestaurantItem} from "./RestaurantItem"
+import {useStore} from "../../../store/StoreProvider"
+
+const RestaurantListWrapper = styled(Grid)(({theme}) => ({
+    marginTop: theme.spacing(2)
+}))
 
 export const RestaurantList = () => {
-    const { restaurants } = useStore()
+    const {restaurants} = useStore()
 
     return (
-        <Box component="div">
-            <Typography variant="h4" fontWeight={600}>Рестораны</Typography>
-            <Grid container spacing={3}>
-                {restaurants.map(restaurant => <RestaurantItem key={restaurant.id} id={restaurant.id} />)}
-            </Grid>
-        </Box>
+        <RestaurantListWrapper container spacing={3}>
+            {restaurants.map(restaurant => <RestaurantItem key={restaurant.id} {...restaurant} />)}
+        </RestaurantListWrapper>
     )
 }

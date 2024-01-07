@@ -3,11 +3,7 @@ import {Grid, styled, Typography} from "@mui/material"
 import {Star} from "@mui/icons-material";
 import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
 import {getRestaurantLinkByName} from "../../../Routes";
-import {useRestaurantFetch} from "../../../shared/RestaurantService/useRestaurantFetch";
-
-const ListItemGrid = styled(Grid)(({theme}) => ({
-    margin: theme.spacing(2, 0)
-}))
+import {Restaurant} from "../../../entities/Resturant/model";
 
 const ListItemTitle = styled(Typography)(({theme}) => ({
     marginTop: theme.spacing(0.5)
@@ -37,31 +33,23 @@ const ListItemRatingCount = styled(Typography)(({theme}) => ({
     color: theme.palette.action.disabled,
 }))
 
-interface Props {
-    id: string
-}
+type Props = Restaurant
 
-export const RestaurantItem = ({id}: Props) => {
-    const restaurant = useRestaurantFetch(id)
-
-    if (!restaurant) {
-        return null
-    }
-
+export const RestaurantItem = ({ id, name, imagePreview, rating, feedBackCount }: Props) => {
     return (
-        <ListItemGrid key={id} item lg={3} md={3} sm={3} xs={3} container direction="column">
+        <Grid key={id} item lg={3} md={3} sm={3} xs={3} container direction="column">
             <RouterLink to={getRestaurantLinkByName(id)}>
                 <ListItemBoxImg item>
-                    <ListItemImg src={restaurant.imagePreview}/>
+                    <ListItemImg src={imagePreview}/>
                 </ListItemBoxImg>
                 <Grid item>
-                    <ListItemTitle fontWeight={600}>{restaurant.name}</ListItemTitle>
+                    <ListItemTitle fontWeight={600}>{name}</ListItemTitle>
                 </Grid>
                 <Grid item container alignItems="center">
                     <ListItemStar/>
-                    <ListItemRatingCount fontWeight={600} variant="body2">{restaurant.rating} ({restaurant.feedBackCount})</ListItemRatingCount>
+                    <ListItemRatingCount fontWeight={600} variant="body2">{rating} ({feedBackCount})</ListItemRatingCount>
                 </Grid>
             </RouterLink>
-        </ListItemGrid>
+        </Grid>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Grid, styled, Typography} from "@mui/material"
-import {useCartItemFetch} from "../lib/useCartItemFetch";
 import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls";
+import {CartItem as CartItemType} from "../../../entities/Cart/model";
 
 const CartItemWrapper = styled(Grid)(({theme}) => ({
     padding: theme.spacing(1, 0, 1, 0),
@@ -25,14 +25,9 @@ const CartImg = styled('img')(() => ({
     height: '100%'
 }))
 
-interface Props {
-    id: string
-}
+type Props = CartItemType & { restaurantId: string | null }
 
-export const CartItem = ({ id }: Props) => {
-    const { cartItem, restaurantId } = useCartItemFetch(id)
-
-    const { name, image, price, weight, count } = cartItem
+export const CartItem = ({ restaurantId, id, weight, count, price, image, name }: Props) => {
 
     return (
         <CartItemWrapper item lg={12} md={12} sm={12} xs={12} container wrap="nowrap" justifyContent="space-between">

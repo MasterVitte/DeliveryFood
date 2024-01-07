@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../lib/assets/logo.svg";
+import logo from "../../../shared/images/logo.svg";
 import {Grid, styled, Typography} from "@mui/material";
 import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
 import {ROUTES} from "../../../Routes";

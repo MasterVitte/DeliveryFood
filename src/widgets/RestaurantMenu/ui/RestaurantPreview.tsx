@@ -2,7 +2,7 @@ import React from 'react'
 import {Box, Grid, styled, Typography} from "@mui/material";
 import {Star} from "@mui/icons-material";
 import {useParams} from "react-router";
-import {useRestaurantFetch} from "../../../shared/RestaurantService/useRestaurantFetch";
+import {useRestaurantFetch} from "../lib/useRestaurantFetch";
 
 const PreviewGrid = styled(Grid)(() => ({
     borderRadius: 24,
