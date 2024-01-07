@@ -63,7 +63,7 @@ export const Cart = () => {
         clearCart()
     }
 
-    const noData = !cart.items.length
+    const noData = !cart.items.length || cart.restaurantId !== id
 
     return (
         <CartWrapper container flexDirection="column">

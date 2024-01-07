@@ -3,6 +3,7 @@ import {AppBarWrapper} from "./AppBarWrapper";
 import {AppBarProps, Grid, styled} from "@mui/material";
 import {AppProfile} from "./AppProfile";
 import {AppLogo} from "./AppLogo";
+import {CartButton} from "./CartButton";
 
 const AppToolbar = styled(Grid)(() => ({
     padding: 0,
@@ -28,6 +29,7 @@ export const AppBar = (appBarProps: Omit<AppBarProps, 'children'>) => {
                     <AppLogo />
                 </AppLogoSection>
                 <AppProfileSection item container alignItems="center">
+                    <CartButton />
                     <AppProfile />
                 </AppProfileSection>
             </AppToolbar>
