@@ -2,7 +2,7 @@ import React from 'react'
 import {Grid, styled, Typography} from "@mui/material";
 import {RestaurantMenuItem} from "./RestaurantMenuItem";
 import {useParams} from "react-router";
-import {useRestaurantFetch} from "../../../shared/RestaurantService/useRestaurantFetch";
+import {useRestaurantFetch} from "../lib/useRestaurantFetch";
 
 const MenuListTitle = styled(Typography)(({theme}) => ({
     margin: theme.spacing(2, 0)

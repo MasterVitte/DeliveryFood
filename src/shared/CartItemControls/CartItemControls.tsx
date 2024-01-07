@@ -1,7 +1,7 @@
 import React from 'react'
 import {Add, Remove} from "@mui/icons-material";
 import {Grid, styled, Typography} from "@mui/material";
-import {useStore} from "../../store/Store";
+import {useStore} from "../../store/StoreProvider";
 
 const CartCountersWrapper = styled(Grid)(({theme}) => ({
     backgroundColor: theme.palette.background.paper,

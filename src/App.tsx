@@ -4,7 +4,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {AppBar} from "./widgets/AppBar/ui/AppBar";
 import {Routes} from "./Routes";
 import {Footer} from "./widgets/Footer/ui/Footer";
-import {StoreProvider} from "./store/Store";
+import {StoreProvider} from "./store/StoreProvider";
 
 const defaultTheme = createTheme();
 

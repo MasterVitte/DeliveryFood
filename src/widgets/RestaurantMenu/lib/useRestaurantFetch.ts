@@ -1,6 +1,6 @@
-import {useStore} from "../../store/Store";
 import {useEffect, useState} from "react";
-import {Restaurant} from "../../entities/Resturant/model";
+import {useStore} from "../../../store/StoreProvider";
+import {Restaurant} from "../../../entities/Resturant/model";
 
 export const useRestaurantFetch = (id: string) => {
     const { getRestaurantById } = useStore()

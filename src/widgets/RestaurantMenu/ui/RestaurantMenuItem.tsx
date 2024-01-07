@@ -1,10 +1,10 @@
 import {Box, Button, Grid, styled, Typography} from "@mui/material"
 import {Add} from "@mui/icons-material"
-import {useStore} from "../../../store/Store"
+import {useStore} from "../../../store/StoreProvider"
 import {MenuItem} from "../../../entities/Resturant/model"
-import React, {useEffect, useState} from "react";
-import {CartItem} from "../../../entities/Cart/model";
+import React from "react";
 import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls";
+import {useCartItemFetch} from "../lib/useCartItemFetch";
 
 const RestaurantItemWrapper = styled(Grid)(({theme}) => ({
     padding: theme.spacing(2),
@@ -50,15 +50,10 @@ const RestaurantItemButton = styled(Button)(({theme}) => ({
 type Props = MenuItem & { restaurantId: string }
 
 export const RestaurantMenuItem = ({restaurantId, id, name, image, price, weight}: Props) => {
-    const [itemInCart, setItemInCart] = useState<CartItem | undefined>(undefined)
+    const {addToCard} = useStore()
+    const { cartItem } = useCartItemFetch(id)
 
-    const {addToCard, cart} = useStore()
-
-    useEffect(() => {
-        setItemInCart(cart.items.find(item => item.id === id))
-    }, [cart, id])
-
-    const addedInCart = !!itemInCart
+    const addedInCart = !!cartItem
 
     return (
         <Grid item container lg={3} md={3} sm={3} xs={3}>
@@ -73,7 +68,7 @@ export const RestaurantMenuItem = ({restaurantId, id, name, image, price, weight
                 </RestaurantInfoWrapper>
                 <Box component="div" style={{marginTop: '8px'}}>
                     {addedInCart ? (
-                            <CartItemControls restaurantId={restaurantId} id={id} count={itemInCart?.count}/>
+                            <CartItemControls restaurantId={restaurantId} id={id} count={cartItem?.count}/>
                         ) :
                         <RestaurantItemButton
                             fullWidth
