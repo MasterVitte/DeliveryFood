@@ -56,7 +56,7 @@ export const Cart = () => {
             status: 'checking',
             total: cart.total,
             items: cart.items,
-            address: 'Мой адрес'
+            address: 'ул. Пушкина дом Колотушкина 5'
         }
 
         confirmOrder(order)

@@ -20,9 +20,9 @@ export const CartItemControls = ({ restaurantId, id, count }: Props) => {
 
     return (
         <CartCountersWrapper container alignItems="center" justifyContent="space-between">
-            <Remove fontSize="small" onClick={() => removeFromCart({ menuItemId: id })} />
+            <Remove fontSize="small" onClick={() => removeFromCart({ menuItemId: id })} style={{cursor: 'pointer'}} />
             <Typography variant="caption" lineHeight={1} fontWeight={600}>{count}</Typography>
-            <Add fontSize="small" onClick={() => addToCard({ restaurantId, menuItemId: id })} />
+            <Add fontSize="small" onClick={() => addToCard({ restaurantId, menuItemId: id })} style={{cursor: 'pointer'}} />
         </CartCountersWrapper>
     )
 }
