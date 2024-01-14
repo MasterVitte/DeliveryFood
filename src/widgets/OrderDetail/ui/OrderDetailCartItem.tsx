@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box, Grid, styled, Typography} from "@mui/material"
-import {CartItem} from "../../../entities/Cart/model";
+import {CartItem} from "../../../entities/Cart/model"
 
 const OrderItemWrapper = styled(Grid)(({theme}) => ({
     marginTop: theme.spacing(2)

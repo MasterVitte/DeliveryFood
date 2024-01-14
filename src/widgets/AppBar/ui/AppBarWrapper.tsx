@@ -1,5 +1,5 @@
-import {AppBarProps, styled} from "@mui/material";
-import MuiAppBar from "@mui/material/AppBar";
+import {AppBarProps, styled} from "@mui/material"
+import MuiAppBar from "@mui/material/AppBar"
 
 export const AppBarWrapper = styled(MuiAppBar)<AppBarProps>(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,

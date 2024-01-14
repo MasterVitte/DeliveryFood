@@ -2,10 +2,10 @@ import {Box, Button, Grid, styled, Typography} from "@mui/material"
 import {Add} from "@mui/icons-material"
 import {useStore} from "../../../store/StoreProvider"
 import {MenuItem} from "../../../entities/Resturant/model"
-import React, {useCallback} from "react";
-import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls";
-import {useCartItemFetch} from "../lib/useCartItemFetch";
-import {CartClearModal} from "../../CartClearModal/ui/CartClearModal";
+import React, {useCallback} from "react"
+import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls"
+import {useCartItemFetch} from "../lib/useCartItemFetch"
+import {CartClearModal} from "../../CartClearModal/ui/CartClearModal"
 
 const RestaurantItemWrapper = styled(Grid)(({theme}) => ({
     padding: theme.spacing(2),

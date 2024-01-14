@@ -1,7 +1,7 @@
 import React from 'react'
 import {Grid, styled, Typography} from "@mui/material"
-import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls";
-import {CartItem as CartItemType} from "../../../entities/Cart/model";
+import {CartItemControls} from "../../../shared/CartItemControls/CartItemControls"
+import {CartItem as CartItemType} from "../../../entities/Cart/model"
 
 const CartItemWrapper = styled(Grid)(({theme}) => ({
     padding: theme.spacing(1, 0, 1, 0),

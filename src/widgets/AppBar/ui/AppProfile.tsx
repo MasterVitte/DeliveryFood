@@ -1,9 +1,9 @@
 import React from 'react'
-import {Avatar, Grid, styled, Typography} from "@mui/material";
+import {Avatar, Grid, styled, Typography} from "@mui/material"
 import {Dropdown, Menu, MenuButton, MenuItem} from '@mui/base'
-import {green} from "@mui/material/colors";
-import {ROUTES} from "../../../Routes";
-import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
+import {green} from "@mui/material/colors"
+import {ROUTES} from "../../../Routes"
+import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink"
 
 const MenuButtonDropdown = styled(MenuButton)(() => ({
     border: 'none',

@@ -1,9 +1,9 @@
 import React from 'react'
-import {Divider, Grid, styled, Typography} from "@mui/material";
-import {OrderDetailCartItem} from "./OrderDetailCartItem";
-import {useOrderItemFetch} from "../lib/useOrderItemFetch";
-import {useStore} from "../../../store/StoreProvider";
-import {OrderStatus} from "./OrderStatus";
+import {Divider, Grid, styled, Typography} from "@mui/material"
+import {OrderDetailCartItem} from "./OrderDetailCartItem"
+import {useOrderItemFetch} from "../lib/useOrderItemFetch"
+import {useStore} from "../../../store/StoreProvider"
+import {OrderStatus} from "./OrderStatus"
 
 const OrdersDetailWrapper = styled(Grid)(({theme}) => ({
     marginTop: theme.spacing(2)
