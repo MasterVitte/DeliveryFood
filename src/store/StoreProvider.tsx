@@ -1,11 +1,11 @@
 import React, {createContext, PropsWithChildren, useCallback, useContext} from 'react'
-import {Restaurant} from "../entities/Resturant/model";
-import {Cart} from "../entities/Cart/model";
-import {Order} from "../entities/Order/model";
-import {useCartStore} from "./Cart/useCartStore";
-import {useConfigureStore} from "./lib/useConfigureStore";
-import {useRestaurantStore} from "./Restaurant/useRestaurantStore";
-import {useOrderStore} from "./Order/useOrderStore";
+import {Restaurant} from "../entities/Resturant/model"
+import {Cart} from "../entities/Cart/model"
+import {Order} from "../entities/Order/model"
+import {useCartStore} from "./Cart/useCartStore"
+import {useConfigureStore} from "./lib/useConfigureStore"
+import {useRestaurantStore} from "./Restaurant/useRestaurantStore"
+import {useOrderStore} from "./Order/useOrderStore"
 
 export interface ContextType extends StoreProviderType {
     addToCard: ({ restaurantId, menuItemId }: { restaurantId: string | null, menuItemId: string }) => void
@@ -34,7 +34,7 @@ export const StoreProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const { restaurants, cart, orders, activeOrderOnView, clearCartModalShow, setState } = useConfigureStore()
 
     const { addToCard, removeFromCart, clearCart } = useCartStore({ cart, setState })
-    const { getRestaurantById } = useRestaurantStore({ restaurants })
+    const { getRestaurantById } = useRestaurantStore({ restaurants, setState })
     const { confirmOrder, getOrderById, setActiveFirstOrderOnView, setActiveOrderOnView } = useOrderStore({ orders, setState })
     
     const openClearCartModal = useCallback(() => {

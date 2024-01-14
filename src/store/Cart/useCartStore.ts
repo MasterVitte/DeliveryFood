@@ -1,7 +1,9 @@
 import React, {useCallback, useEffect} from 'react'
-import {ContextType, StoreProviderType} from "../StoreProvider";
-import {Cart, CartItem} from "../../entities/Cart/model";
-import {MenuItem} from "../../entities/Resturant/model";
+import {ContextType, StoreProviderType} from "../StoreProvider"
+import {Cart, CartItem} from "../../entities/Cart/model"
+import {MenuItem} from "../../entities/Resturant/model"
+import {useApi} from "../../shared/Api/useApi"
+import {useEventEmitter} from "../../shared/EventEmitter/useEventEmitter"
 
 interface Props {
     cart: Cart
@@ -9,6 +11,9 @@ interface Props {
 }
 
 export const useCartStore = ({ cart, setState }: Props) => {
+    const api = useApi()
+    const emitter = useEventEmitter()
+
     const addToCard: ContextType['addToCard'] = useCallback(({ restaurantId, menuItemId }) => {
         setState(prevState => {
             const restaurant = prevState.restaurants.find(({ id }) => id === restaurantId)
@@ -40,12 +45,14 @@ export const useCartStore = ({ cart, setState }: Props) => {
                 total: cart.total
             }
 
+            emitter.emit('addCart', newCart)
+
             return {
                 ...prevState,
                 cart: newCart
             }
         })
-    }, [cart.total, setState])
+    }, [cart.total, emitter, setState])
 
     const removeFromCart: ContextType['removeFromCart'] = useCallback(({ menuItemId }) => {
         setState(prevState => {
@@ -55,29 +62,44 @@ export const useCartStore = ({ cart, setState }: Props) => {
             const needRemove = cartItem.count === 1
 
             if (needRemove) {
+                const filteredCart = {
+                    ...cart,
+                    items: cartItems.filter(item => item.id !== menuItemId)
+                }
+
+                emitter.emit('removeFromCart', filteredCart)
+
                 return {
                     ...prevState,
-                    cart: {
-                        ...cart,
-                        items: cartItems.filter(item => item.id !== menuItemId)
-                    }
+                    cart: filteredCart
                 }
             } else {
+                const recalculatedCart = {
+                    ...cart,
+                    items: cartItems.map(item => {
+                        return {...item, count: item.count - 1}
+                    })
+                }
+
+                emitter.emit('removeFromCart', recalculatedCart)
+
                 return {
                     ...prevState,
-                    cart: {
-                        ...cart,
-                        items: cartItems.map(item => {
-                            return {...item, count: item.count - 1}
-                        })
-                    }
+                    cart: recalculatedCart
                 }
             }
 
         })
-    }, [cart, setState])
+    }, [cart, emitter, setState])
 
     const clearCart = useCallback(() => {
+        const clearedCart = {
+            ...cart,
+            items: []
+        }
+
+        emitter.emit('clearCart', clearedCart)
+
         setState(prevState => {
             return {
                 ...prevState,
@@ -87,8 +109,27 @@ export const useCartStore = ({ cart, setState }: Props) => {
                 }
             }
         })
-    }, [cart, setState])
+    }, [cart, emitter, setState])
 
+    useEffect(() => {
+        emitter.on('addCart', (value: Cart) => api.post('api/cart', value))
+        emitter.on('removeFromCart', (value: Cart) => api.post('api/cart', value))
+        emitter.on('clearCart', (value: Cart) => api.post('api/cart', value))
+    }, [api, emitter])
+
+    // Получить данные корзины с бэкенда
+    useEffect(() => {
+        const cart = api.get('api/cart')
+
+        setState(prevState => {
+            return {
+                ...prevState,
+                cart
+            }
+        })
+    }, [api, setState])
+
+    // Очистить корзину, если нет позиций
     useEffect(() => {
         if (cart.items.length === 0 && cart.restaurantId) {
             setState(prevState => {
@@ -104,6 +145,8 @@ export const useCartStore = ({ cart, setState }: Props) => {
         }
     }, [cart, setState])
 
+
+    // Реактивный подсчет суммы корзины
     useEffect(() => {
         if (cart.items.length && cart.restaurantId) {
             setState(prevState => {

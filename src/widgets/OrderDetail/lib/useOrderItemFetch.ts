@@ -1,6 +1,6 @@
-import {useStore} from "../../../store/StoreProvider";
-import {useEffect, useState} from "react";
-import {Order} from "../../../entities/Order/model";
+import {useStore} from "../../../store/StoreProvider"
+import {useEffect, useState} from "react"
+import {Order} from "../../../entities/Order/model"
 
 export const useOrderItemFetch = (id: string | null) => {
     const { getOrderById } = useStore()

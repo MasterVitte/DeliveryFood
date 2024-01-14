@@ -1,10 +1,10 @@
 import React from 'react'
-import {Button} from "../../../shared/Button/ui/Button";
-import {ShoppingCart} from "@mui/icons-material";
-import {useStore} from "../../../store/StoreProvider";
-import {Typography} from "@mui/material";
-import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink";
-import {getRestaurantLinkByName} from "../../../Routes";
+import {Button} from "../../../shared/Button/ui/Button"
+import {ShoppingCart} from "@mui/icons-material"
+import {useStore} from "../../../store/StoreProvider"
+import {Typography} from "@mui/material"
+import {RouterLink} from "../../../shared/RouterLink/ui/RouterLink"
+import {getRestaurantLinkByName} from "../../../Routes"
 
 export const CartButton = () => {
     const {cart} = useStore()
