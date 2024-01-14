@@ -1,11 +1,11 @@
 import React from 'react'
-import {Box, Grid, Button as MaterialButton, styled, Typography} from "@mui/material";
-import {CartItem} from "./CartItem";
-import {useStore} from "../../../store/StoreProvider";
-import {Order} from "../../../entities/Order/model";
+import {Box, Grid, Button as MaterialButton, styled, Typography} from "@mui/material"
+import {CartItem} from "./CartItem"
+import {useStore} from "../../../store/StoreProvider"
+import {Order} from "../../../entities/Order/model"
 import { v4 } from 'uuid'
-import {useParams} from "react-router";
-import {Button} from "../../../shared/Button/ui/Button";
+import {useParams} from "react-router"
+import {Button} from "../../../shared/Button/ui/Button"
 
 const CartWrapper = styled(Grid)(({theme}) => ({
     backgroundColor: '#eee',

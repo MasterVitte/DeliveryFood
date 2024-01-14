@@ -1,10 +1,11 @@
-import React from 'react';
-import {Box, createTheme, CssBaseline, Grid, styled, ThemeProvider} from "@mui/material";
-import {BrowserRouter as Router} from "react-router-dom";
-import {AppBar} from "./widgets/AppBar/ui/AppBar";
-import {Routes} from "./Routes";
-import {Footer} from "./widgets/Footer/ui/Footer";
-import {StoreProvider} from "./store/StoreProvider";
+import React from 'react'
+import {Box, createTheme, CssBaseline, Grid, styled, ThemeProvider} from "@mui/material"
+import {BrowserRouter as Router} from "react-router-dom"
+import {AppBar} from "./widgets/AppBar/ui/AppBar"
+import {Routes} from "./Routes"
+import {Footer} from "./widgets/Footer/ui/Footer"
+import {StoreProvider} from "./store/StoreProvider"
+import {LocalStorageApi} from "./api/LocalStorageApi"
 
 const defaultTheme = createTheme();
 
@@ -18,6 +19,8 @@ const LayoutRoute = styled(Box)(({theme}) => ({
     width: 1600,
     minHeight: '100vh'
 }))
+
+LocalStorageApi.init()
 
 function App() {
     return (

@@ -1,6 +1,6 @@
-import {Divider, Grid, styled, Typography} from "@mui/material";
-import {GitHub} from "@mui/icons-material";
-import {AppLogo} from "../../AppBar/ui/AppLogo";
+import {Divider, Grid, styled, Typography} from "@mui/material"
+import {GitHub} from "@mui/icons-material"
+import {AppLogo} from "../../AppBar/ui/AppLogo"
 
 const FooterWrapper = styled(Grid)(({theme}) => ({
     backgroundColor: theme.palette.action.hover,

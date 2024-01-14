@@ -1,4 +1,4 @@
-import {MenuItem} from "../Resturant/model";
+import {MenuItem} from "../Resturant/model"
 
 export interface Cart {
     restaurantId: string | null

@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
-import {Grid, Typography} from "@mui/material";
-import {OrdersList} from "../widgets/OrdersList/ui/OrdersList";
-import {OrderDetail} from "../widgets/OrderDetail/ui/OrderDetail";
-import {useStore} from "../store/StoreProvider";
-import {Button} from "../shared/Button/ui/Button";
-import CakeIcon from '@mui/icons-material/Cake';
-import {RouterLink} from "../shared/RouterLink/ui/RouterLink";
-import {ROUTES} from "../Routes";
+import {Grid, Typography} from "@mui/material"
+import {OrdersList} from "../widgets/OrdersList/ui/OrdersList"
+import {OrderDetail} from "../widgets/OrderDetail/ui/OrderDetail"
+import {useStore} from "../store/StoreProvider"
+import {Button} from "../shared/Button/ui/Button"
+import CakeIcon from '@mui/icons-material/Cake'
+import {RouterLink} from "../shared/RouterLink/ui/RouterLink"
+import {ROUTES} from "../Routes"
 
 export const OrdersPage = () => {
     const {setActiveFirstOrderOnView, orders} = useStore()

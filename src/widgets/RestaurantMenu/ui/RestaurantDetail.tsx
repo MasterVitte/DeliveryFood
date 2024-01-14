@@ -1,7 +1,7 @@
 import React from 'react'
-import {Grid} from "@mui/material";
-import {RestaurantPreview} from "./RestaurantPreview";
-import {RestaurantMenuList} from "./RestaurantMenuList";
+import {Grid} from "@mui/material"
+import {RestaurantPreview} from "./RestaurantPreview"
+import {RestaurantMenuList} from "./RestaurantMenuList"
 
 export const RestaurantDetail = () => {
     return (

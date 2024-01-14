@@ -1,6 +1,8 @@
-import React, {useCallback} from "react";
-import {StoreProviderType} from "../StoreProvider";
-import {Order} from "../../entities/Order/model";
+import React, {useCallback, useEffect} from "react"
+import {StoreProviderType} from "../StoreProvider"
+import {Order} from "../../entities/Order/model"
+import {useApi} from "../../shared/Api/useApi"
+import {useEventEmitter} from "../../shared/EventEmitter/useEventEmitter"
 
 interface Props {
     orders: Order[]
@@ -8,14 +10,19 @@ interface Props {
 }
 
 export const useOrderStore = ({ orders, setState }: Props) => {
+    const api = useApi()
+    const emitter = useEventEmitter()
+
     const confirmOrder = useCallback((order: Order) => {
         setState(prevState => {
+            emitter.emit('orders', [...prevState.orders, order])
+
             return {
                 ...prevState,
                 orders: [...prevState.orders, order]
             }
         })
-    }, [setState])
+    }, [emitter, setState])
     
     const getOrderById = useCallback((id: string) => {
         return orders.find(order => order.id === id)
@@ -38,6 +45,21 @@ export const useOrderStore = ({ orders, setState }: Props) => {
             }
         })
     }, [setState])
+
+    useEffect(() => {
+        emitter.on('orders', (value: Order[]) => api.post('api/orders', value))
+    }, [api, emitter])
+
+    useEffect(() => {
+        const orders = api.get('api/orders')
+
+        setState(prevState => {
+            return {
+                ...prevState,
+                orders
+            }
+        })
+    }, [api, setState])
 
     return { confirmOrder, getOrderById, setActiveFirstOrderOnView, setActiveOrderOnView }
 }

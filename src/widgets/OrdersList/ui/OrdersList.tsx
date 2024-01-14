@@ -1,7 +1,7 @@
 import React from 'react'
-import {Grid, styled} from "@mui/material";
-import {OrdersItem} from "./OrdersItem";
-import {useStore} from "../../../store/StoreProvider";
+import {Grid, styled} from "@mui/material"
+import {OrdersItem} from "./OrdersItem"
+import {useStore} from "../../../store/StoreProvider"
 
 const OrdersListWrapper = styled(Grid)(({theme}) => ({
     marginTop: theme.spacing(2)

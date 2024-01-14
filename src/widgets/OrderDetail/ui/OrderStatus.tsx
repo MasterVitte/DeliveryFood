@@ -1,6 +1,6 @@
 import React from 'react'
-import {Typography} from "@mui/material";
-import {Order, ORDER_STATUS_ICON_DICTIONARY} from "../../../entities/Order/model";
+import {Typography} from "@mui/material"
+import {Order, ORDER_STATUS_ICON_DICTIONARY} from "../../../entities/Order/model"
 
 interface Props {
     status: Order['status']

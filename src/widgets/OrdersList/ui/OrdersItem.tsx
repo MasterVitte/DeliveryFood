@@ -1,7 +1,7 @@
 import React from 'react'
 import {Grid, styled, Typography} from "@mui/material"
-import {Order, ORDER_STATUS_DICTIONARY} from "../../../entities/Order/model";
-import {useStore} from "../../../store/StoreProvider";
+import {Order, ORDER_STATUS_DICTIONARY} from "../../../entities/Order/model"
+import {useStore} from "../../../store/StoreProvider"
 
 const OrderWrapper = styled(Grid)(({theme}) => ({
     borderRadius: 36,
